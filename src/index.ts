@@ -1,0 +1,23 @@
+import express from "express";
+import { cancelSubscription } from "./cancelSubscription";
+import { createCharge } from "./createCharge";
+import { createCustomer } from "./createCustomer";
+import { createSubscription } from "./createSubscription";
+import { deleteCustomer } from "./deleteCustomer";
+import { webhooks } from "./webhooks";
+
+const api = express();
+
+api.use("/create-customer", createCustomer);
+api.use("/cancel-subscription", cancelSubscription);
+api.use("/create-subscription", createSubscription);
+api.use("/delate-customer", deleteCustomer);
+api.use("/charge-card", createCharge);
+
+// TODO: https://stripe.com/docs/webhooks
+// - so far only failed subscriptions are caught
+// - need a way to conditionally turn on specific 
+// hooks based on use case to reduce function invocations
+api.use("/webhooks", webhooks);
+
+export { api as stripe };
