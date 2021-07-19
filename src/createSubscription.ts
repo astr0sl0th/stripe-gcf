@@ -2,15 +2,18 @@ import { HttpFunction } from "@google-cloud/functions-framework";
 import stripe from "./initStripe";
 
 export const createSubscription: HttpFunction = async (req, res) => {
-  const { customer, source } = req.body;
-  await stripe.customers.createSource(customer, { source });
-  const { id } = await stripe.subscriptions.create({
-    customer,
-    items: [
-      {
-        price: process.env.SUBSCRIPTION_PRICE,
-      },
-    ],
-  });
-  res.json({ id });
+  const { customerId, params = {} } = req.body;
+  try {
+    const subscription = await stripe.subscriptions.create({
+      customer: customerId,
+      items: [
+        {
+          price: process.env.SUBSCRIPTION_PRICE,
+        },
+      ],
+    }, params);
+    res.json(subscription);
+  } catch (err) {
+    res.status(500).send({ error: "Subscription could not be added" });
+  }
 };

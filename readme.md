@@ -31,6 +31,7 @@ Create a `.env` file and set your stripe secret test key
 ```bash
   # Your super secret 🔑
   STRIPE_SECRET_KEY=sk_test_123456
+  SUBSCRIPTION_PRICE=price_123456
 ```
 
 This will start a local server `http://localhost:8080`
