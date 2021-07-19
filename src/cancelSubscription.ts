@@ -1,22 +1,16 @@
 import { HttpFunction } from "@google-cloud/functions-framework";
 import stripe from "./initStripe";
 
-const cancelSubscription: HttpFunction = async (req, res) => {
-  const { id } = req.body;
+// TODO: Delete multiple subscriptions at once?
+export const cancelSubscription: HttpFunction = async (req, res) => {
+  const { subscriptionId, params = {} } = req.body;
   try {
-    const customer = await stripe.customers.retrieve(id, {
-      expand: ["subscriptions"],
-    });
-    (customer as any).subscriptions.data.forEach(
-      async ({ id }: { id: string }) => {
-        Promise.resolve();
-        await stripe.subscriptions.del(id);
-      },
+    const canceledSubscription = await stripe.subscriptions.del(
+      subscriptionId,
+      { ...params },
     );
-    return res.json(customer);
+    res.json(canceledSubscription);
   } catch (err) {
-    return res.status(500).json({ error: "Could not cancel subscription." });
+    res.status(500).json({ error: "Could not cancel subscription." });
   }
 };
-
-export { cancelSubscription };
