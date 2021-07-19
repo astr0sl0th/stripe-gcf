@@ -4,6 +4,7 @@ import { createCharge } from "./createCharge";
 import { createCustomer } from "./createCustomer";
 import { createSubscription } from "./createSubscription";
 import { deleteCustomer } from "./deleteCustomer";
+import { updateCard } from "./updateCard";
 import { webhooks } from "./webhooks";
 
 const api = express();
@@ -11,6 +12,7 @@ const api = express();
 api.use("/create-customer", createCustomer);
 api.use("/delate-customer", deleteCustomer);
 api.use("/charge-card", createCharge);
+api.use("/update-card", updateCard);
 api.use("/create-subscription", createSubscription);
 api.use("/cancel-subscription", cancelSubscription);
 
