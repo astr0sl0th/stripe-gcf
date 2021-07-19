@@ -9,10 +9,10 @@ import { webhooks } from "./webhooks";
 const api = express();
 
 api.use("/create-customer", createCustomer);
-api.use("/cancel-subscription", cancelSubscription);
-api.use("/create-subscription", createSubscription);
 api.use("/delate-customer", deleteCustomer);
 api.use("/charge-card", createCharge);
+api.use("/create-subscription", createSubscription);
+api.use("/cancel-subscription", cancelSubscription);
 
 // TODO: https://stripe.com/docs/webhooks
 // - so far only failed subscriptions are caught
