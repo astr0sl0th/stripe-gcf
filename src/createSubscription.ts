@@ -8,9 +8,7 @@ export const createSubscription: HttpFunction = async (req, res) => {
     customer,
     items: [
       {
-        price: process.env.NODE_ENV === "production"
-          ? process.env.PRICE
-          : "price_1JByO2AR5ga0LsAGw8L7bHgr",
+        price: process.env.SUBSCRIPTION_PRICE,
       },
     ],
   });
