@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://github.com/astr0sl0th/stripe-gcf/raw/master/stripe-gcp-header.png" alt="Stripe Google Cloud Function">
+</p>
+
 # Stripe GCF
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
