@@ -54,7 +54,7 @@ To deploy `gcf-stripe` run
   yarn build 🔧
   # Deploy to google cloud 🚀
   gcloud functions deploy stripe \
-  --set-env-vars STRIPE_SECRET_KEY=sk_live_123456 \
+  --set-env-vars STRIPE_SECRET_KEY=sk_live_123456 SUBSCRIPTION_PRICE=price123456 \
   --entry-point ./dist/index.js \
   --runtime nodejs14 \
   --trigger-http
